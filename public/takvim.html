@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dijital YKS Koçu - Takvim</title>
+    <link rel="stylesheet" href="takvim.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <div id="toast" class="toast">Geçmiş tarihlere görev ekleyemezsiniz!</div>
+
+    <div class="app-container">
+        <aside class="sidebar">
+            <div class="mini-calendar-card">
+                <div class="calendar-controls">
+                    <input type="date" id="datePicker">
+                </div>
+
+                <div class="mini-calendar" id="miniCalendar"></div>
+            </div>
+
+            <div class="task-input-card">
+                <h3>Görev Gir</h3>
+
+                <textarea id="taskInput" placeholder="Bugün ne yapacaksın?"></textarea>
+
+                <div class="priority-wrapper">
+                    <label>Öncelik:</label>
+                    <select id="priorityInput" class="modern-select">
+                        <option value="DÜŞÜK">🟢 Düşük</option>
+                        <option value="ORTA" selected>🟡 Orta</option>
+                        <option value="YÜKSEK">🔴 Yüksek</option>
+                    </select>
+                </div>
+
+                <button id="addTaskBtn" class="add-btn">Ekle</button>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header>
+                <h1>Takvimim</h1>
+            </header>
+
+            <div class="calendar-grid-header">
+                <span>Pzt</span>
+                <span>Sal</span>
+                <span>Çar</span>
+                <span>Per</span>
+                <span>Cum</span>
+                <span>Cts</span>
+                <span>Paz</span>
+            </div>
+
+            <div class="main-calendar-grid" id="mainCalendar"></div>
+        </main>
+    </div>
+
+    <script src="takvim.js"></script>
+</body>
+
+</html>

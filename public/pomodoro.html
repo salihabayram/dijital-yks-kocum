@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dijital YKS Koçum - Pomodoro</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="pomodoro.css">
+</head>
+
+<body class="pomodoro-body">
+
+    <div class="main-container">
+
+        <main class="content">
+            <div class="pomodoro-wrapper">
+
+                <div class="pomodoro-panel">
+
+                    <div class="timer-card">
+                        <div class="timer-mode">OTURUM</div>
+                        <div class="timer-display" id="timerDisplay">25:00</div>
+
+                        <div class="timer-buttons">
+                            <button id="startBtn" class="timer-btn primary-btn">Başlat</button>
+                            <button id="pauseBtn" class="timer-btn">Durdur</button>
+                            <button id="resetBtn" class="timer-btn">Sıfırla</button>
+                            <div class="ders-sec-dropdown">
+                                <button id="dersSecBtn" class="timer-btn">Ders Seç</button>
+
+                                <div id="dersSecPanel" class="ders-sec-panel hidden">
+                                    <p class="ders-grup-baslik">TYT</p>
+                                    <div id="tytDersListesi" class="ders-listesi"></div>
+
+                                    <p class="ders-grup-baslik">AYT</p>
+                                    <div id="aytDersListesi" class="ders-listesi"></div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="stats-row">
+                        <div class="mini-card">
+                            <div class="mini-card-value" id="toplamCalisma">0</div>
+                            <div class="mini-card-label">Toplam Çalışma</div>
+                        </div>
+
+                        <div class="mini-card">
+                            <div class="mini-card-value" id="enIyiCalisma">0</div>
+                            <div class="mini-card-label">En İyi Çalışma</div>
+                        </div>
+
+                        <div class="mini-card">
+                            <div class="adjust-box">
+                                <button class="adjust-btn" id="breakMinus">−</button>
+                                <input type="number" id="breakLength" class="sure-input" value="5" min="1">
+                                <button class="adjust-btn" id="breakPlus">+</button>
+                            </div>
+                            <div class="mini-card-label">Mola Süresi</div>
+                        </div>
+
+                        <div class="mini-card">
+                            <div class="adjust-box">
+                                <button class="adjust-btn" id="sessionMinus">−</button>
+                                <input type="number" id="sessionLength" class="sure-input" value="25" min="1">
+                                <button class="adjust-btn" id="sessionPlus">+</button>
+                            </div>
+                            <div class="mini-card-label">Oturum Süresi</div>
+                        </div>
+
+                        <div class="mini-card">
+                            <div class="adjust-box">
+                                <button class="adjust-btn" id="roundMinus">−</button>
+                                <input type="number" id="roundCount" class="sure-input" value="3" min="1">
+                                <button class="adjust-btn" id="roundPlus">+</button>
+                            </div>
+                            <div class="mini-card-label">Tur</div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <script src="pomodoro.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Konu Takip - Dijital YKS Koçunuz</title>
+    <link rel="stylesheet" href="konuTakip.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+
+    <div class="app-container">
+        <aside class="sidebar">
+            <div class="brand-zone">
+                <img src="resimler/logo.png" alt="Logo" class="mini-logo">
+
+            </div>
+
+            <nav class="side-nav">
+                <a href="anasayfa.html" class="nav-item"><i class="fas fa-th-large"></i> <span>Genel Bakış</span></a>
+                <a href="konutakip.html" class="nav-item active"><i class="fas fa-book-open"></i> <span>Konu
+                        Takip</span></a>
+                <a href="takvim.html" class="nav-item"><i class="fas fa-calendar-alt"></i> <span>Takvim</span></a>
+                <a href="pomodoro.html" class="nav-item"><i class="fas fa-stopwatch"></i> <span>Pomodoro</span></a>
+                <a href="analiz.html" class="nav-item"><i class="fas fa-chart-line"></i> <span>Deneme Analizi</span></a>
+            </nav>
+
+            <div class="upgrade-card">
+
+                <p>Sınırları Zorla!</p>
+                <button class="upgrade-btn">Pro'ya Geç</button>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="top-header card-glass">
+                <div class="title-group">
+                    <h1>📚 Müfredat Takibi</h1>
+                    <p>Başarıya giden yolda her adımın kayıt altında.</p>
+                </div>
+
+                <div class="header-progress">
+                    <div class="progress-labels">
+                        <span>Genel İlerleme</span>
+                        <strong id="totalPercent">0%</strong>
+                    </div>
+                    <div class="progress-track">
+                        <div id="mainProgressBar" class="progress-fill"></div>
+                    </div>
+                </div>
+            </header>
+
+            <nav class="exam-tabs-nav">
+                <button class="exam-tab active" onclick="filterExam('TYT', this)">TYT</button>
+                <button class="exam-tab" onclick="filterExam('AYT-SAY', this)">AYT (SAY)</button>
+                <button class="exam-tab" onclick="filterExam('AYT-EA', this)">AYT (EA)</button>
+                <button class="exam-tab" onclick="filterExam('AYT-SOZ', this)">AYT (SÖZ)</button>
+            </nav>
+
+            <div class="subject-section card-glass">
+                <div class="section-label"><i class="fas fa-list-ul"></i> Ders Seçimi</div>
+                <div id="dersListesi" class="subject-scroller">
+                </div>
+            </div>
+
+            <section class="topics-container card-glass">
+                <div class="topics-grid" id="konuListesi">
+                    <div class="empty-state">Başlamak için yukarıdan bir ders seçin.</div>
+                </div>
+            </section>
+        </main>
+    </div>
+    <div id="toast-container"></div>
+    <script src="konuTakip.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dijital YKS Koçum - Ana Panel</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="anasayfa.css">
+    <link rel="icon" type="image/png" href="/resimler/logo.png">
+</head>
+
+<body class="dashboard-body">
+
+    <div class="main-container">
+        <aside class="sidebar">
+            <div class="brand-zone">
+                <img src="resimler/logo.png" alt="Logo" class="mini-logo">
+            </div>
+
+            <nav class="side-nav">
+                <a href="anasayfa.html" class="nav-item active">
+                    <i class="fas fa-th-large"></i> <span>Genel Bakış</span>
+                </a>
+                <a href="konutakip.html" class="nav-item">
+                    <i class="fas fa-book-open"></i> <span>Konu Takip</span>
+                </a>
+                <a href="takvim.html" class="nav-item">
+                    <i class="fas fa-calendar-alt"></i> <span>Takvim</span>
+                </a>
+                <a href="pomodoro.html" class="nav-item">
+                    <i class="fas fa-stopwatch"></i> <span>Pomodoro</span>
+                </a>
+                <a href="analiz.html" class="nav-item">
+                    <i class="fas fa-chart-line"></i> <span>Deneme Analizi</span>
+                </a>
+            </nav>
+
+            <div class="upgrade-card">
+                <p>Sınırları Zorla!</p>
+                <button class="upgrade-btn">Pro'ya Geç</button>
+            </div>
+        </aside>
+
+        <main class="content">
+            <div class="content-layout">
+
+                <div class="center-content">
+                    <div class="welcome-banner">
+                        <div class="welcome-text">
+                            <h1 id="welcome-user">Hoş geldin 👋</h1>
+                            <p id="daily-motivation">"Gelecek, bugünden hazırlananlara aittir."</p>
+                        </div>
+                        <img src="resimler/anasayfada_oturanKız.png" alt="Karakter" class="banner-char">
+                    </div>
+
+                    <div class="yks-timer">
+                        <div class="timer-content">
+                            <i class="fas fa-hourglass-half"></i>
+                            <span>YKS'ye Kalan Süre: <strong id="yks-timer-display">Yükleniyor...</strong></span>
+                        </div>
+                    </div>
+
+                    <div class="stats-row">
+                        <div class="stat-card">
+                            <p class="stat-label">Hedefin</p>
+                            <div class="stat-content">
+                                <div class="stat-icon"><i class="fas fa-university"></i></div>
+                                <div class="stat-info">
+                                    <span id="target-uni-val">Hedef Belirlenmedi</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="stat-card">
+                            <p class="stat-label">Son Deneme Netleri</p>
+                            <div class="stat-content">
+                                <div class="stat-icon"><i class="fas fa-file-invoice"></i></div>
+                                <div class="stat-info">
+                                    <span>TYT: <strong id="last-tyt-net">-</strong></span>
+                                    <span>AYT: <strong id="last-ayt-net">-</strong></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="stat-card">
+                            <p class="stat-label">Bitirilen Konu</p>
+                            <div class="stat-content">
+                                <div class="stat-icon"><i class="fas fa-book-open"></i></div>
+                                <div class="stat-info">
+                                    <h2 id="total-completed-topics">0</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="analysis-section">
+                        <div class="analysis-container">
+                            <div class="main-chart-box chart-card">
+                                <div class="chart-header-row"
+                                    style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                                    <h3>Haftalık İlerleme</h3>
+                                    <div class="chart-controls">
+                                        <button onclick="changeChartWeek(-7)" class="chart-nav-btn"><i
+                                                class="fas fa-chevron-left"></i></button>
+                                        <button onclick="changeChartWeek(7)" class="chart-nav-btn"><i
+                                                class="fas fa-chevron-right"></i></button>
+                                    </div>
+                                </div>
+                                <div class="chart-container" style="height: 300px; position: relative;">
+                                    <canvas id="mainAnalysisChart"></canvas>
+                                </div>
+                            </div>
+
+                            <div class="stats-mini-column">
+                                <div class="mini-stat-card">
+                                    <p>Çalışılan Süre</p>
+                                    <h3><span id="work-hour-week">0</span> Saat</h3>
+                                </div>
+                                <div class="mini-stat-card">
+                                    <p>Günlük Ort. Çalışma</p>
+                                    <h3><span id="work-hour-avg">0</span> Dakika</h3>
+                                </div>
+                                <div class="mini-stat-card comparison-card">
+                                    <p>Haftalık Performans</p>
+                                    <h3 id="comparison-value">0 Saat</h3>
+                                    <div id="comparison-trend" class="trend-status">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="analysis-grid">
+                            <div class="chart-card">
+                                <h4>TYT Konu Tamamlama</h4>
+                                <div class="donut-wrapper"><canvas id="tytChart"></canvas></div>
+                            </div>
+                            <div class="chart-card">
+                                <h4>AYT Sayısal</h4>
+                                <div class="donut-wrapper"><canvas id="aytSayChart"></canvas></div>
+                            </div>
+                            <div class="chart-card">
+                                <h4>AYT Eşit Ağırlık</h4>
+                                <div class="donut-wrapper"><canvas id="aytEaChart"></canvas></div>
+                            </div>
+                            <div class="chart-card">
+                                <h4>AYT Sözel</h4>
+                                <div class="donut-wrapper"><canvas id="aytSozChart"></canvas></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="right-content">
+                    <div class="calendar-card">
+                        <div class="calendar-header-main"
+                            style="display: flex; justify-content: space-between; align-items: center;">
+                            <h3>Takvim</h3>
+                            <a href="takvim.html" class="incele-link"
+                                style="color: #6366F1; font-weight: 600;">İncele</a>
+                        </div>
+                        <div class="calendar-navigation">
+                            <button class="nav-arrow" id="prevDay"><i class="fas fa-chevron-left"></i></button>
+                            <span class="month-year" id="currentDateDisplay">...</span>
+                            <button class="nav-arrow" id="nextDay"><i class="fas fa-chevron-right"></i></button>
+                        </div>
+                        <div class="calendar-days" id="weeklyDays"></div>
+                    </div>
+
+                    <div class="tasks-card">
+                        <div class="tasks-header"
+                            style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                            <h3>Günlük Görevler</h3>
+                            <button class="modern-add-btn add-task-link">
+                                <i class="fas fa-plus"></i> Görev Ekle
+                            </button>
+                        </div>
+
+                        <div class="todo-progress-container">
+                            <div class="progress-info">
+                                <span>Tamamlanma Oranı</span>
+                                <span>%<span id="todo-percent">0</span></span>
+                            </div>
+                            <div class="progress-bar">
+                                <div id="todo-progress-fill"></div>
+                            </div>
+                        </div>
+
+                        <ul class="task-list" id="dynamicTaskList"></ul>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <div id="taskModal" class="modal">
+        <div class="modal-content premium-design">
+            <button id="closeModal" class="close-premium-btn">&times;</button>
+            <div class="modal-header">
+                <div class="header-icon"><i class="fas fa-rocket"></i></div>
+                <div class="header-text">
+                    <h3>Günlük Hedeflerini Gir</h3>
+                    <p>Başarıya giden yolda bir adım daha...</p>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="premium-input-group">
+                    <label for="taskInput">Göreviniz Nedir?</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-pen-nib"></i>
+                        <input type="text" id="taskInput" placeholder="Örn: Limit ve Süreklilik 50 Soru">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="saveTaskBtn" class="premium-save-btn">
+                    <span>Listeye Ekle</span>
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="anasayfa.js"></script>
+</body>
+
+</html>

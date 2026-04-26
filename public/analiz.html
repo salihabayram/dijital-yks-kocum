@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detaylı Deneme Analizi</title>
+    <link rel="stylesheet" href="analiz.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div class="analiz-sayfa">
+
+        <div class="analiz-ust-baslik">
+            <div class="baslik-sol">
+                <div class="baslik-ikon">📈</div>
+                <h1>Detaylı Deneme Analizi</h1>
+            </div>
+        </div>
+
+        <div class="analiz-ust-grid">
+
+            <div class="analiz-kart deneme-giris-karti">
+
+                <div class="tab-alani">
+                    <button class="tab-btn aktif" id="tytTabBtn">TYT Girişi</button>
+                    <button class="tab-btn" id="aytTabBtn">AYT Girişi</button>
+                </div>
+
+                <div class="tab-icerik aktif" id="tytTabContent">
+                    <div class="ust-form-alani iki-alanli">
+                        <input type="text" id="tytDenemeAdi" placeholder="Deneme Adı (Örn: Özdebir 1)">
+
+                        <div class="custom-date-wrapper">
+                            <input type="hidden" id="tytTarih">
+                            <button type="button" class="custom-date-trigger" id="tytTarihTrigger">
+                                <span class="custom-date-text placeholder" id="tytTarihText">gg.aa.yyyy</span>
+                                <span class="custom-date-icon">🗓</span>
+                            </button>
+
+                            <div class="custom-date-popup" id="tytTarihPopup">
+                                <div class="custom-date-header">
+                                    <button type="button" class="date-nav-btn" id="tytPrevAy">‹</button>
+                                    <div class="custom-date-title" id="tytAyYil"></div>
+                                    <button type="button" class="date-nav-btn" id="tytNextAy">›</button>
+                                </div>
+
+                                <div class="custom-date-weekdays">
+                                    <span>Pzt</span>
+                                    <span>Sal</span>
+                                    <span>Çar</span>
+                                    <span>Per</span>
+                                    <span>Cum</span>
+                                    <span>Cmt</span>
+                                    <span>Paz</span>
+                                </div>
+
+                                <div class="custom-date-grid" id="tytTarihGrid"></div>
+
+                                <div class="custom-date-footer">
+                                    <button type="button" class="date-footer-btn" id="tytTemizleBtn">Temizle</button>
+                                    <button type="button" class="date-footer-btn today" id="tytBugunBtn">Bugün</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="ders-kutulari">
+                        <div class="ders-karti">
+                            <h3>Türkçe</h3>
+                            <div class="inputlar">
+                                <input type="number" id="tytTurkceDogru" placeholder="D">
+                                <input type="number" id="tytTurkceYanlis" placeholder="Y">
+                            </div>
+                        </div>
+
+                        <div class="ders-karti">
+                            <h3>Matematik</h3>
+                            <div class="inputlar">
+                                <input type="number" id="tytMatDogru" placeholder="D">
+                                <input type="number" id="tytMatYanlis" placeholder="Y">
+                            </div>
+                        </div>
+
+                        <div class="ders-karti">
+                            <h3>Tarih</h3>
+                            <div class="inputlar">
+                                <input type="number" id="tytTarihDogru" placeholder="D">
+                                <input type="number" id="tytTarihYanlis" placeholder="Y">
+                            </div>
+                        </div>
+
+                        <div class="ders-karti">
+                            <h3>Coğrafya</h3>
+                            <div class="inputlar">
+                                <input type="number" id="tytCografyaDogru" placeholder="D">
+                                <input type="number" id="tytCografyaYanlis" placeholder="Y">
+                            </div>
+                        </div>
+
+                        <div class="ders-karti">
+                            <h3>Felsefe</h3>
+                            <div class="inputlar">
+                                <input type="number" id="tytFelsefeDogru" placeholder="D">
+                                <input type="number" id="tytFelsefeYanlis" placeholder="Y">
+                            </div>
+                        </div>
+
+                        <div class="ders-karti">
+                            <h3>Din Kültürü</h3>
+                            <div class="inputlar">
+                                <input type="number" id="tytDinDogru" placeholder="D">
+                                <input type="number" id="tytDinYanlis" placeholder="Y">
+                            </div>
+                        </div>
+
+                        <div class="ders-karti">
+                            <h3>Fizik</h3>
+                            <div class="inputlar">
+                                <input type="number" id="tytFizikDogru" placeholder="D">
+                                <input type="number" id="tytFizikYanlis" placeholder="Y">
+                            </div>
+                        </div>
+
+                        <div class="ders-karti">
+                            <h3>Kimya</h3>
+                            <div class="inputlar">
+                                <input type="number" id="tytKimyaDogru" placeholder="D">
+                                <input type="number" id="tytKimyaYanlis" placeholder="Y">
+                            </div>
+                        </div>
+
+                        <div class="ders-karti">
+                            <h3>Biyoloji</h3>
+                            <div class="inputlar">
+                                <input type="number" id="tytBiyolojiDogru" placeholder="D">
+                                <input type="number" id="tytBiyolojiYanlis" placeholder="Y">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="alt-net-alani">
+                        <div class="toplam-net-yazi">
+                            <span>Toplam Net:</span>
+                            <strong id="tytToplamNet">0.00</strong>
+                        </div>
+                        <button class="kaydet-btn" id="tytKaydetBtn">TYT KAYDET</button>
+                    </div>
+                </div>
+
+                <div class="tab-icerik" id="aytTabContent">
+                    <div class="ust-form-alani uc-alanli">
+                        <input type="text" id="aytDenemeAdi" placeholder="Deneme Adı (Örn: 3D AYT)">
+
+                        <div class="custom-date-wrapper">
+                            <input type="hidden" id="aytTarih">
+                            <button type="button" class="custom-date-trigger" id="aytTarihTrigger">
+                                <span class="custom-date-text placeholder" id="aytTarihText">gg.aa.yyyy</span>
+                                <span class="custom-date-icon">🗓</span>
+                            </button>
+
+                            <div class="custom-date-popup" id="aytTarihPopup">
+                                <div class="custom-date-header">
+                                    <button type="button" class="date-nav-btn" id="aytPrevAy">‹</button>
+                                    <div class="custom-date-title" id="aytAyYil"></div>
+                                    <button type="button" class="date-nav-btn" id="aytNextAy">›</button>
+                                </div>
+
+                                <div class="custom-date-weekdays">
+                                    <span>Pzt</span>
+                                    <span>Sal</span>
+                                    <span>Çar</span>
+                                    <span>Per</span>
+                                    <span>Cum</span>
+                                    <span>Cmt</span>
+                                    <span>Paz</span>
+                                </div>
+
+                                <div class="custom-date-grid" id="aytTarihGrid"></div>
+
+                                <div class="custom-date-footer">
+                                    <button type="button" class="date-footer-btn" id="aytTemizleBtn">Temizle</button>
+                                    <button type="button" class="date-footer-btn today" id="aytBugunBtn">Bugün</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="custom-select-wrapper">
+                            <select id="aytAlanSecimi">
+                                <option value="" selected disabled>ALAN SEÇİN</option>
+                                <option value="sayisal">SAYISAL</option>
+                                <option value="esitAgirlik">EŞİT AĞIRLIK</option>
+                                <option value="sozel">SÖZEL</option>
+                            </select>
+
+                            <button type="button" class="custom-select-trigger" id="aytAlanTrigger">
+                                <span class="custom-select-text placeholder" id="aytAlanText">ALAN SEÇİN</span>
+                                <span class="custom-select-icon"></span>
+                            </button>
+
+                            <div class="custom-select-popup" id="aytAlanPopup">
+                                <button type="button" class="custom-select-option" data-value="sayisal">SAYISAL</button>
+                                <button type="button" class="custom-select-option" data-value="esitAgirlik">EŞİT
+                                    AĞIRLIK</button>
+                                <button type="button" class="custom-select-option" data-value="sozel">SÖZEL</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="alan-dersleri" id="sayisalAlan">
+                        <div class="ders-kutulari">
+                            <div class="ders-karti">
+                                <h3>Matematik</h3>
+                                <div class="inputlar">
+                                    <input type="number" id="sayisalMatDogru" placeholder="D">
+                                    <input type="number" id="sayisalMatYanlis" placeholder="Y">
+                                </div>
+                            </div>
+
+                            <div class="ders-karti">
+                                <h3>Fizik</h3>
+                                <div class="inputlar">
+                                    <input type="number" id="sayisalFizikDogru" placeholder="D">
+                                    <input type="number" id="sayisalFizikYanlis" placeholder="Y">
+                                </div>
+                            </div>
+
+                            <div class="ders-karti">
+                                <h3>Kimya</h3>
+                                <div class="inputlar">
+                                    <input type="number" id="sayisalKimyaDogru" placeholder="D">
+                                    <input type="number" id="sayisalKimyaYanlis" placeholder="Y">
+                                </div>
+                            </div>
+
+                            <div class="ders-karti">
+                                <h3>Biyoloji</h3>
+                                <div class="inputlar">
+                                    <input type="number" id="sayisalBiyolojiDogru" placeholder="D">
+                                    <input type="number" id="sayisalBiyolojiYanlis" placeholder="Y">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="alan-dersleri" id="esitAgirlikAlan">
+                        <div class="ders-kutulari">
+                            <div class="ders-karti">
+                                <h3>Matematik</h3>
+                                <div class="inputlar">
+                                    <input type="number" id="eaMatDogru" placeholder="D">
+                                    <input type="number" id="eaMatYanlis" placeholder="Y">
+                                </div>
+                            </div>
+
+                            <div class="ders-karti">
+                                <h3>Edebiyat</h3>
+                                <div class="inputlar">
+                                    <input type="number" id="eaEdebiyatDogru" placeholder="D">
+                                    <input type="number" id="eaEdebiyatYanlis" placeholder="Y">
+                                </div>
+                            </div>
+
+                            <div class="ders-karti">
+                                <h3>Tarih-1</h3>
+                                <div class="inputlar">
+                                    <input type="number" id="eaTarih1Dogru" placeholder="D">
+                                    <input type="number" id="eaTarih1Yanlis" placeholder="Y">
+                                </div>
+                            </div>
+
+                            <div class="ders-karti">
+                                <h3>Coğrafya-1</h3>
+                                <div class="inputlar">
+                                    <input type="number" id="eaCografya1Dogru" placeholder="D">
+                                    <input type="number" id="eaCografya1Yanlis" placeholder="Y">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="alan-dersleri" id="sozelAlan">
+                        <div class="ders-kutulari">
+                            <div class="ders-karti">
+                                <h3>Edebiyat</h3>
+                                <div class="inputlar">
+                                    <input type="number" id="sozelEdebiyatDogru" placeholder="D">
+                                    <input type="number" id="sozelEdebiyatYanlis" placeholder="Y">
+                                </div>
+                            </div>
+
+                            <div class="ders-karti">
+                                <h3>Tarih-1</h3>
+                                <div class="inputlar">
+                                    <input type="number" id="sozelTarih1Dogru" placeholder="D">
+                                    <input type="number" id="sozelTarih1Yanlis" placeholder="Y">
+                                </div>
+                            </div>
+
+                            <div class="ders-karti">
+                                <h3>Coğrafya-1</h3>
+                                <div class="inputlar">
+                                    <input type="number" id="sozelCografya1Dogru" placeholder="D">
+                                    <input type="number" id="sozelCografya1Yanlis" placeholder="Y">
+                                </div>
+                            </div>
+
+                            <div class="ders-karti">
+                                <h3>Tarih-2</h3>
+                                <div class="inputlar">
+                                    <input type="number" id="sozelTarih2Dogru" placeholder="D">
+                                    <input type="number" id="sozelTarih2Yanlis" placeholder="Y">
+                                </div>
+                            </div>
+
+                            <div class="ders-karti">
+                                <h3>Coğrafya-2</h3>
+                                <div class="inputlar">
+                                    <input type="number" id="sozelCografya2Dogru" placeholder="D">
+                                    <input type="number" id="sozelCografya2Yanlis" placeholder="Y">
+                                </div>
+                            </div>
+
+                            <div class="ders-karti">
+                                <h3>Felsefe Grubu</h3>
+                                <div class="inputlar">
+                                    <input type="number" id="sozelFelsefeDogru" placeholder="D">
+                                    <input type="number" id="sozelFelsefeYanlis" placeholder="Y">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="alt-net-alani">
+                        <div class="toplam-net-yazi">
+                            <span>Toplam Net:</span>
+                            <strong id="aytToplamNet">0.00</strong>
+                        </div>
+                        <button class="kaydet-btn" id="aytKaydetBtn">AYT KAYDET</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="analiz-kart grafik-karti">
+                <div class="grafik-ust">
+                    <span class="legend-item tyt-cizgi">TYT</span>
+                    <span class="legend-item ayt-cizgi">AYT</span>
+                </div>
+
+                <div class="grafik-canvas-alani">
+                    <canvas id="netGrafik"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <div class="analiz-kart gecmis-karti">
+            <div class="gecmis-baslik">
+                <h2>📜 Deneme Geçmişi</h2>
+            </div>
+
+            <div class="tablo-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Tarih</th>
+                            <th>Deneme Adı</th>
+                            <th>Tür</th>
+                            <th>Net</th>
+                            <th>İşlem</th>
+                        </tr>
+                    </thead>
+                    <tbody id="denemeGecmisiBody"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="modal-overlay hidden" id="denemeDetayModal">
+            <div class="modal-card deneme-detay-card">
+                <button type="button" class="modal-close-btn" id="denemeDetayKapatBtn">×</button>
+
+                <div class="deneme-detay-header">
+                    <h2 id="denemeDetayBaslik">Deneme Detayı</h2>
+                    <p id="denemeDetayMeta"></p>
+                </div>
+
+                <div class="detay-ozet-grid" id="denemeDetayOzet"></div>
+
+                <div class="detay-tablo-wrapper">
+                    <table class="detay-table">
+                        <thead>
+                            <tr>
+                                <th>Ders</th>
+                                <th>Doğru</th>
+                                <th>Yanlış</th>
+                                <th>Net</th>
+                            </tr>
+                        </thead>
+                        <tbody id="denemeDetayBody"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="analiz.js"></script>
+</body>
+
+</html>

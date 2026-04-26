@@ -1,0 +1,834 @@
+/* ================== RESET ================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: #f8f9fc;
+    display: flex;
+    height: 100vh;
+    overflow-x: hidden;
+    /* FIX */
+}
+
+/* ================== ROOT ================== */
+:root {
+    --bg-dark: #090915;
+    --primary-mor: #4B3584;
+    --accent-sari: #F0C470;
+    --border: rgba(255, 255, 255, 0.08);
+
+    --text-white: #ffffff;
+    --text-muted: #a0a0c0;
+
+    --success: #22c55e;
+    --danger: #ef4444;
+}
+
+/* ================== LAYOUT ================== */
+.main-container {
+    display: flex;
+    width: 100%;
+}
+
+/* ================== SIDEBAR (KORUNDU) ================== */
+.sidebar {
+    width: 280px;
+    background: var(--bg-dark);
+    border-right: 1px solid var(--border);
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+}
+
+.brand-zone {
+    margin-bottom: 50px;
+}
+
+.mini-logo {
+    width: 140px;
+}
+
+.side-nav {
+    flex-grow: 1;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: var(--text-muted);
+    text-decoration: none;
+    padding: 12px 18px;
+    border-radius: 14px;
+    margin-bottom: 8px;
+    transition: 0.3s;
+    font-size: 16px;
+}
+
+.nav-item.active,
+.nav-item:hover {
+    background: var(--primary-mor);
+    color: white;
+}
+
+.upgrade-card {
+    margin-top: auto;
+    background: var(--primary-mor);
+    padding: 20px;
+    border-radius: 20px;
+    text-align: center;
+}
+
+.upgrade-btn {
+    background: var(--accent-sari);
+    border: none;
+    padding: 10px;
+    border-radius: 12px;
+    width: 100%;
+    font-weight: 600;
+    cursor: pointer;
+    color: #1a132e;
+}
+
+/* ================== CONTENT ================== */
+.content {
+    flex: 1;
+    padding: 40px;
+    overflow-y: auto;
+}
+
+.content-layout {
+    display: flex;
+    gap: 30px;
+}
+
+.center-content {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.right-content {
+    flex: 1;
+}
+
+/* ================== BANNER ================== */
+.welcome-banner {
+    background-color: #e8e4ff;
+    padding: 16px 24px;
+    border-radius: 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.banner-char {
+    width: 115px;
+}
+
+/* ================== TIMER ================== */
+.yks-timer {
+    background-color: #f7d070;
+    margin-top: 15px;
+    padding: 18px 25px;
+    border-radius: 20px;
+    font-weight: 600;
+}
+
+/* ================== CARDS ================== */
+.stat-card,
+.chart-card,
+.calendar-card,
+.tasks-card {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+}
+
+/* ================== STATS ================== */
+.stats-row {
+    display: flex;
+    gap: 20px;
+}
+
+.stat-content {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.stat-icon {
+    width: 45px;
+    height: 45px;
+    background: #f1f5ff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary-mor);
+}
+
+/* ================== ANALYSIS ================== */
+.analysis-container {
+    display: flex;
+    gap: 25px;
+}
+
+.main-chart-box {
+    flex: 2;
+}
+
+.chart-container {
+    height: 300px;
+}
+
+/* mini stats */
+.stats-mini-column {
+    flex: 0.8;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.mini-stat-card {
+    background: #fff;
+    padding: 18px;
+    border-radius: 15px;
+    border-left: 5px solid var(--primary-mor);
+}
+
+/* ================== GRID ================== */
+/* Donut grafiklerini sütun grafiğinden uzaklaştırmak için */
+.analysis-grid {
+    margin-top: 50px !important;
+    /* Bu değeri artırarak mesafeyi açabilirsin */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 25px;
+}
+
+/* Sütun grafiğinin kendi alt boşluğu için */
+.analysis-container {
+    margin-bottom: 30px;
+}
+
+/* ================== DONUT ================== */
+.donut-wrapper {
+    height: 180px;
+    margin-top: 10px;
+}
+
+/* sadece donutlara uygula */
+.donut-wrapper canvas {
+    max-height: 180px;
+}
+
+/* ================== CALENDAR ================== */
+.calendar-card {
+    margin-bottom: 20px;
+}
+
+.calendar-days {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.day-item {
+    width: 45px;
+    padding: 10px 0;
+    text-align: center;
+    border-radius: 12px;
+    color: #ccc;
+    cursor: pointer;
+}
+
+.day-item.active {
+    background: var(--primary-mor);
+    color: white;
+}
+
+/* ================== TASK ================== */
+.task-list {
+    list-style: none;
+    margin-top: 15px;
+}
+
+.task-item {
+    background: #fdfdfd;
+    border: 1px solid #f0f0f0;
+    padding: 15px;
+    border-radius: 15px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    transition: 0.2s;
+}
+
+.task-item:hover {
+    transform: translateY(-2px);
+}
+
+.strikethrough {
+    text-decoration: line-through;
+    color: #94a3b8;
+}
+
+/* Görev Ekle Butonunu Sağa Yaslama ve Modernleştirme */
+.tasks-header {
+    display: flex;
+    justify-content: space-between;
+    /* Başlık sola, buton sağa */
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.modern-add-btn {
+    background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 6px -1px rgba(99, 102, 241, 0.4);
+}
+
+.modern-add-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px -2px rgba(99, 102, 241, 0.5);
+}
+
+/* Modal Çarpı Butonu (Kesin Çözüm) */
+.close-premium-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 32px;
+    height: 32px;
+    background: #f1f5f9;
+    border: none;
+    border-radius: 50%;
+    font-size: 22px;
+    color: #475569;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    z-index: 10001;
+    /* Her şeyin üstünde */
+    line-height: 1;
+}
+
+.close-premium-btn:hover {
+    background: #fee2e2;
+    color: #ef4444;
+    transform: rotate(90deg);
+}
+
+/* Modal İçerik Konumlandırma */
+.modal-content {
+    position: relative;
+    /* Çarpı butonunun buna göre hizalanması için şart */
+}
+
+/* ================== PROGRESS ================== */
+.progress-bar {
+    width: 100%;
+    height: 10px;
+    background: #e2e8f0;
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 10px 0;
+}
+
+#todo-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #4ade80, #22c55e);
+    width: 0%;
+    transition: width 0.5s ease;
+}
+
+/* ================== MODAL ================== */
+/* Modal ve Glassmorphism */
+/* Donut grafiklerini sütun grafiğinden (yukarıdan) uzaklaştırır */
+.analysis-grid {
+    margin-top: 60px !important;
+    gap: 30px;
+}
+
+/* Modal Arka Planı (Blur efekti ekledik) */
+/* Premium Modal Tasarımı */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(15, 23, 42, 0.7);
+    backdrop-filter: blur(12px);
+    /* Blur efekti */
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content.premium-design {
+    background: #ffffff;
+    border-radius: 28px;
+    width: 420px;
+    padding: 35px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    animation: premiumFade 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.header-icon {
+    width: 50px;
+    height: 50px;
+    background: #EEF2FF;
+    color: #6366F1;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+.header-text h3 {
+    color: #0F172A;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.header-text p {
+    color: #64748B;
+    font-size: 0.9rem;
+    margin-bottom: 25px;
+}
+
+.premium-input-group label {
+    display: block;
+    color: #334155;
+    font-weight: 600;
+    margin-bottom: 8px;
+    font-size: 0.85rem;
+}
+
+.input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-wrapper i {
+    position: absolute;
+    left: 15px;
+    color: #94A3B8;
+}
+
+#taskInput {
+    width: 100%;
+    padding: 14px 14px 14px 45px;
+    background: #F8FAFC;
+    border: 2px solid #F1F5F9;
+    border-radius: 16px;
+    font-size: 1rem;
+    transition: all 0.3s;
+    color: #1E293B;
+}
+
+#taskInput:focus {
+    border-color: #6366F1;
+    background: #fff;
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+    outline: none;
+}
+
+.premium-save-btn {
+    width: 100%;
+    padding: 16px;
+    background: #6366F1;
+    color: white;
+    border: none;
+    border-radius: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: all 0.3s;
+    margin-top: 20px;
+}
+
+.premium-save-btn:hover {
+    background: #4F46E5;
+    transform: scale(1.02);
+    box-shadow: 0 10px 15px -3px rgba(99, 102, 241, 0.3);
+}
+
+@keyframes premiumFade {
+    from {
+        opacity: 0;
+        transform: scale(0.9) translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+.close-premium {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 28px;
+    color: #94a3b8;
+    cursor: pointer;
+    line-height: 1;
+    padding: 5px;
+    transition: color 0.2s;
+}
+
+.close-premium:hover {
+    color: #ef4444;
+}
+
+.close-premium {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 28px;
+    color: #94a3b8;
+    cursor: pointer;
+    line-height: 1;
+    padding: 5px;
+    transition: color 0.2s;
+}
+
+.close-premium:hover {
+    color: #ef4444;
+}
+
+
+/* ================== BADGE ================== */
+.trend-badge {
+    background: #ecfdf5;
+    color: #10b981;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+}
+
+/* Görev Renkleri */
+.task-done-blue {
+    border-left: 5px solid #3b82f6 !important;
+    background: #eff6ff !important;
+}
+
+.task-done-blue .task-text {
+    color: #1d4ed8;
+    text-decoration: line-through;
+}
+
+.task-missed-red {
+    border-left: 5px solid #ef4444 !important;
+    background: #fef2f2 !important;
+}
+
+.task-missed-red .task-text {
+    color: #b91c1c;
+}
+
+/* Analiz Kartları Modern Dokunuş */
+.analysis-card {
+    transition: transform 0.3s ease;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+}
+
+.analysis-card:hover {
+    transform: translateY(-5px);
+}
+
+/* İncele butonu sağa */
+.takvim-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+/* Toast Bildirim Konteynırı */
+#toast-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 10000;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Toast Kutusu */
+.toast {
+    min-width: 280px;
+    padding: 16px 20px;
+    border-radius: 12px;
+    background: #fff;
+    color: #1e293b;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 500;
+    font-family: 'Poppins', sans-serif;
+    border-left: 6px solid #6366f1;
+    animation: toastIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.toast.error {
+    border-left-color: #ef4444;
+}
+
+.toast.success {
+    border-left-color: #10b981;
+}
+
+.toast i {
+    font-size: 1.2rem;
+}
+
+.toast.error i {
+    color: #ef4444;
+}
+
+.toast.success i {
+    color: #10b981;
+}
+
+/* Onay Toast'ına Özel Stiller */
+.confirm-toast {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    padding: 18px !important;
+    border-left: 6px solid #EF4444 !important;
+    /* Kırmızı Silme Çizgisi */
+}
+
+.toast-content {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.toast-actions {
+    display: flex;
+    gap: 8px;
+    width: 100%;
+    justify-content: flex-end;
+}
+
+.toast-btn {
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    transition: 0.2s;
+}
+
+.toast-btn.cancel {
+    background: #F1F5F9;
+    color: #475569;
+}
+
+.toast-btn.confirm {
+    background: #EF4444;
+    color: white;
+}
+
+.toast-btn:hover {
+    transform: translateY(-1px);
+    filter: brightness(0.95);
+}
+
+/* Kayma Animasyonu */
+@keyframes toastIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes toastOut {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+
+    to {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
+
+/* Analiz Kutusu İçindeki Trend Yazıları */
+.trend-info {
+    display: block;
+    font-size: 0.75rem;
+    margin-top: 5px;
+    font-weight: 600;
+}
+
+.growth-text {
+    color: #10b981;
+}
+
+/* Yeşil */
+.decline-text {
+    color: #ef4444;
+}
+
+/* Kırmızı */
+
+/* Donutların yerleşimi */
+.analysis-grid {
+    margin-top: 50px !important;
+}
+
+.comparison-card {
+    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+    border: 1px solid #e2e8f0;
+}
+
+.trend-text {
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.growth-text {
+    color: #10B981 !important;
+    /* Canlı Yeşil */
+}
+
+.decline-text {
+    color: #EF4444 !important;
+    /* Canlı Kırmızı */
+}
+
+.mini-stat-card {
+    background: #fff;
+    padding: 20px;
+    border-radius: 16px;
+    position: relative;
+    border-left: 5px solid #6366F1;
+    /* İşte o morluk burası */
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+/* Trend yazı renkleri */
+.growth-text {
+    color: #10b981 !important;
+    font-weight: bold;
+}
+
+.decline-text {
+    color: #ef4444 !important;
+    font-weight: bold;
+}
+
+/* Grafik Başlık ve Oklar */
+.chart-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.chart-nav-btn {
+    background: #f1f5f9;
+    border: none;
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    color: #6366f1;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-left: 5px;
+}
+
+.chart-nav-btn:hover {
+    background: #6366f1;
+    color: white;
+}
+
+/* 3. Kutu Trend Yazısı Düzenleme */
+.trend-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 10px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    line-height: 1.4;
+    padding: 8px;
+    border-radius: 10px;
+    background: rgba(16, 185, 129, 0.05);
+    /* Çok hafif yeşil arka plan */
+}
+
+.trend-status i {
+    font-size: 1rem;
+}
+
+.trend-status strong {
+    font-weight: 700;
+}
+
+/* Yeşil ve Turuncu Durumları */
+.growth-text {
+    color: #10b981 !important;
+    background: rgba(16, 185, 129, 0.08);
+}
+
+.decline-text {
+    color: #f59e0b !important;
+    background: rgba(245, 158, 11, 0.08);
+}

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Giriş Yap - Dijital YKS Koçunuz</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="main-container">
+        <div class="form-section">
+            <div class="form-wrapper">
+                <header>
+                    <p class="welcome-text">Hoşgeldiniz.</p>
+                    <h1>Giriş Yap</h1>
+                    <p class="login-link">Hesabın yok mu? <a href="register.html">Kayıt Ol!</a></p>
+                </header>
+                <form id="loginForm">
+                    <div class="input-group">
+                        <label for="email">E-posta</label>
+                        <div class="input-wrapper">
+                            <span class="icon">✉</span>
+                            <input type="email" id="email" placeholder="Email adresinizi girin" required>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label for="sifre">Şifre</label>
+                        <div class="input-wrapper">
+                            <span class="icon">🔒</span>
+                            <input type="password" id="sifre" placeholder="Şifrenizi girin" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="register-btn">Giriş Yap</button>
+                </form>
+            </div>
+        </div>
+        <div class="visual-section" style="background-color: #1a132e; border-radius: 30px 0 0 30px;">
+            <div class="brand-content">
+                <img src="karakter.png" alt="Giriş Görseli" class="hero-image">
+            </div>
+        </div>
+    </div>
+    <script src="login.js"></script>
+</body>
+
+</html>

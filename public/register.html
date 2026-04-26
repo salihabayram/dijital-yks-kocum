@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kayıt Ol - Dijital YKS Koçunuz</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="main-container">
+        <div class="form-section">
+            <div class="form-wrapper">
+                <header>
+                    <p class="welcome-text">Hoşgeldiniz .</p>
+                    <h1>Kayıt Ol</h1>
+                    <p class="login-link">Zaten bir hesabın var mı? <br>
+                        <a href="login.html">Buradan giriş yapabilirsin !</a>
+                    </p>
+                </header>
+
+                <form id="registerForm">
+                    <div class="input-group">
+                        <label for="email">Email</label>
+                        <div class="input-wrapper">
+                            <span class="icon">✉</span>
+                            <input type="email" id="email" placeholder="Email adresinizi girin" required>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="ad">Adınız</label>
+                        <div class="input-wrapper">
+                            <span class="icon">👤</span>
+                            <input type="text" id="ad" placeholder="Kullanıcı adınızı girin" required>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="sifre">Şifre</label>
+                        <div class="input-wrapper">
+                            <span class="icon">🔒</span>
+                            <input type="password" id="sifre" placeholder="Şifrenizi girin" required>
+                            <span class="toggle-password">👁</span>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="confirmSifre">Şifre tekrar</label>
+                        <div class="input-wrapper">
+                            <span class="icon">🔒</span>
+                            <input type="password" id="confirmSifre" placeholder="Şifrenizi onaylayın" required>
+                            <span class="toggle-password">👁</span>
+                        </div>
+                    </div>
+                    <div class="input-wrapper">
+                        <span class="icon">🚻</span>
+                        <select id="cinsiyet" required>
+                            <option value="" disabled selected>Cinsiyet Seçiniz</option>
+                            <option value="Kadın">Kadın</option>
+                            <option value="Erkek">Erkek</option>
+                            <option value="Belirtmek İstemiyorum">Belirtmek İstemiyorum</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="register-btn">Kayıt Ol</button>
+                </form>
+            </div>
+        </div>
+
+
+        <div class="visual-section">
+            <div class="brand-content">
+                <div class="logo-box">
+                    <img src="karakter.png" alt="Dijital YKS Koçunuz" class="brand-logo">
+                    <span>DİJİTAL <br> YKS <br> KOÇUNUZ</span>
+                </div>
+                <img src="karakter.png" alt="3D Character" class="hero-image">
+                <div class="brand-text">
+                    <h2>Sign Up to name</h2>
+                    <p>Lorem Ipsum is simply</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
