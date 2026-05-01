@@ -124,7 +124,7 @@
                                 </div>
                                 <div class="mini-stat-card comparison-card">
                                     <p>Haftalık Performans</p>
-                                    <h3 id="comparison-value">0 Saat</h3>
+
                                     <div id="comparison-trend" class="trend-status">
                                     </div>
                                 </div>
@@ -147,6 +147,58 @@
                             <div class="chart-card">
                                 <h4>AYT Sözel</h4>
                                 <div class="donut-wrapper"><canvas id="aytSozChart"></canvas></div>
+                            </div>
+
+
+                            <div class="target-section-row">
+                                <div class="target-panel-card">
+                                    <div class="target-panel-header">
+                                        <div>
+                                            <h3>Hedef Üniversite & Bölüm Seçimi</h3>
+                                            <p>Şehir, üniversite ve bölüm seçerek hedefini belirle.</p>
+                                        </div>
+                                        <div class="target-header-icon">
+                                            <i class="fas fa-bullseye"></i>
+                                        </div>
+                                    </div>
+
+                                    <div class="target-select-area">
+                                        <label for="citySelect">Şehir Seç</label>
+                                        <select id="citySelect">
+                                            <option value="">Şehir seçiniz</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="target-grid-modern">
+                                        <div class="target-column">
+                                            <h4>Üniversiteler</h4>
+                                            <div id="universityList" class="radio-card-list">
+                                                <p class="empty-target-text">Önce şehir seçiniz.</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="target-column">
+                                            <h4>Bölümler</h4>
+
+                                            <input type="text" id="departmentSearch" class="target-search-input"
+                                                placeholder="Bölüm ara...">
+
+
+
+                                            <div id="departmentList" class="department-card-list">
+                                                <p class="empty-target-text">Önce üniversite seçiniz.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="target-save-area">
+                                        <button id="saveTargetBtn" class="save-target-btn">
+                                            <i class="fas fa-check-circle"></i>
+                                            Hedef Olarak Kaydet
+                                        </button>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
                     </div>
@@ -188,6 +240,25 @@
                         </div>
 
                         <ul class="task-list" id="dynamicTaskList"></ul>
+
+                    </div>
+
+                    <div class="target-assistant-fixed">
+                        <div class="bot-header">
+                            <div class="bot-avatar">
+                                <i class="fas fa-robot"></i>
+                            </div>
+                            <div>
+                                <h4>Hedef Asistanı</h4>
+                                <p>Seçtiğin bölümü analiz eder.</p>
+                            </div>
+                        </div>
+
+                        <div id="targetBotInfo" class="bot-info-empty">
+                            <i class="fas fa-lightbulb"></i>
+                            <p>Bir bölüm seçtiğinde burada üniversite tipi, puan, sıralama ve yıl bilgileri görünecek.
+                            </p>
+                        </div>
                     </div>
                 </div>
 

@@ -109,6 +109,13 @@ function yerelTarihSaatFormatla(tarih) {
     return `${yil}-${ay}-${gun} ${saat}:${dakika}:${saniye}`;
 }
 
+function apiTarihFormatla(tarih) {
+    const yil = tarih.getFullYear();
+    const ay = String(tarih.getMonth() + 1).padStart(2, "0");
+    const gun = String(tarih.getDate()).padStart(2, "0");
+    return `${yil}-${ay}-${gun}`;
+}
+
 async function pomodoroKaydiniKaydet() {
     const token = localStorage.getItem("token");
 
@@ -127,7 +134,8 @@ async function pomodoroKaydiniKaydet() {
     }
 
     const simdi = new Date();
-    const bugun = simdi.toLocaleDateString("en-CA");
+    const bugun = apiTarihFormatla(simdi);
+
 
     const veri = {
         ders_id: secilenDersId,

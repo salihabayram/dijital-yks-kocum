@@ -14,9 +14,17 @@ exports.getDashboardStats = async (req, res) => {
             .query(`
                 SELECT 
                     (SELECT TOP 1 ad FROM dbo.Ogrenci WHERE ogrenci_id = @sid) AS ogrenci_adi,
+
                     (SELECT COUNT(*) 
                      FROM dbo.Ogrenci_Ilerleme 
                      WHERE ogrenci_id = @sid AND tamamlandi_mi = 1) AS completedCount,
+
+                    ISNULL((
+                        SELECT SUM(calisma_suresi_saniye)
+                        FROM dbo.Callisma_kayitlari
+                        WHERE ogrenci_id = @sid
+                          AND CAST(tarih AS DATE) = CAST(GETDATE() AS DATE)
+                    ), 0) / 3600.0 AS bugunSaat,
 
                     ISNULL((
                         SELECT SUM(calisma_suresi_saniye)
@@ -83,17 +91,23 @@ exports.getDashboardStats = async (req, res) => {
         });
 
         const s = statsResult.recordset[0] || {};
-        const buHafta = Math.round(Number(s.buHaftaSaat || 0));
-        const gecenHafta = Math.round(Number(s.gecenHaftaSaat || 0));
-        const fark = buHafta - gecenHafta;
+
+        const bugunSaat = Number(s.bugunSaat || 0);
+        const buHaftaSaat = Number(s.buHaftaSaat || 0);
+        const gecenHaftaSaat = Number(s.gecenHaftaSaat || 0);
+
+        const fark = buHaftaSaat - gecenHaftaSaat;
 
         res.json({
             ogrenci_adi: s.ogrenci_adi || "Öğrenci",
             completedCount: s.completedCount || 0,
-            buHaftaSaat: buHafta,
-            gunlukOrtalama: Math.round((buHafta * 60) / 7),
-            haftalikFark: Math.abs(fark),
+
+            bugunSaat: Number(bugunSaat.toFixed(1)),
+            gunlukOrtalama: Math.round((buHaftaSaat * 60) / 7),
+
+            haftalikFark: Number(Math.abs(fark).toFixed(1)),
             durum: fark >= 0 ? "artiş" : "azaliş",
+
             progressData
         });
     } catch (err) {
@@ -144,8 +158,15 @@ exports.getWeeklyStats = async (req, res) => {
             `);
 
         res.json({
-            tyt: result.recordset.map(r => Number(r.tytSaat).toFixed(1)),
-            ayt: result.recordset.map(r => Number(r.aytSaat).toFixed(1))
+            dates: result.recordset.map(r => {
+                const tarih = new Date(r.Tarih);
+                const yil = tarih.getFullYear();
+                const ay = String(tarih.getMonth() + 1).padStart(2, "0");
+                const gun = String(tarih.getDate()).padStart(2, "0");
+                return `${gun}.${ay}.${yil}`;
+            }),
+            tyt: result.recordset.map(r => Number(r.tytSaat)),
+            ayt: result.recordset.map(r => Number(r.aytSaat))
         });
     } catch (err) {
         console.error("Weekly stats hatası:", err.message);

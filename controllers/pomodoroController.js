@@ -58,7 +58,7 @@ exports.pomodoroOzetiniGetir = async (req, res) => {
                 SELECT ISNULL(SUM(calisma_suresi_saniye), 0) AS bugunkuToplamCalisma
                 FROM Callisma_kayitlari
                 WHERE ogrenci_id = @ogrenci_id
-                  AND tarih = CAST(GETDATE() AS DATE)
+                  AND CAST(tarih AS DATE) = CAST(GETDATE() AS DATE)
             `);
 
         const enIyiResult = await pool.request()

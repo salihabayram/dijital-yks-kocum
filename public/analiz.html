@@ -29,6 +29,7 @@
                     <button class="tab-btn" id="aytTabBtn">AYT Girişi</button>
                 </div>
 
+                <!-- ================= TYT ================= -->
                 <div class="tab-icerik aktif" id="tytTabContent">
                     <div class="ust-form-alani iki-alanli">
                         <input type="text" id="tytDenemeAdi" placeholder="Deneme Adı (Örn: Özdebir 1)">
@@ -67,78 +68,101 @@
                         </div>
                     </div>
 
-                    <div class="ders-kutulari">
-                        <div class="ders-karti">
-                            <h3>Türkçe</h3>
-                            <div class="inputlar">
-                                <input type="number" id="tytTurkceDogru" placeholder="D">
-                                <input type="number" id="tytTurkceYanlis" placeholder="Y">
-                            </div>
-                        </div>
+                    <div class="deneme-giris-tablo-wrapper">
+                        <table class="deneme-giris-tablosu">
+                            <thead>
+                                <tr>
+                                    <th>Ders</th>
+                                    <th>Soru</th>
+                                    <th>Doğru</th>
+                                    <th>Yanlış</th>
+                                    <th>Boş</th>
+                                    <th>Net</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Türkçe</td>
+                                    <td>40</td>
+                                    <td><input type="number" id="tytTurkceDogru" min="0" placeholder="0"></td>
+                                    <td><input type="number" id="tytTurkceYanlis" min="0" placeholder="0"></td>
+                                    <td><input type="number" id="tytTurkceBos" min="0" placeholder="0"></td>
+                                    <td><span class="ders-net" id="tytTurkceNet">0.00</span></td>
+                                </tr>
 
-                        <div class="ders-karti">
-                            <h3>Matematik</h3>
-                            <div class="inputlar">
-                                <input type="number" id="tytMatDogru" placeholder="D">
-                                <input type="number" id="tytMatYanlis" placeholder="Y">
-                            </div>
-                        </div>
+                                <tr>
+                                    <td>Matematik</td>
+                                    <td>40</td>
+                                    <td><input type="number" id="tytMatDogru" min="0" placeholder="0"></td>
+                                    <td><input type="number" id="tytMatYanlis" min="0" placeholder="0"></td>
+                                    <td><input type="number" id="tytMatBos" min="0" placeholder="0"></td>
+                                    <td><span class="ders-net" id="tytMatNet">0.00</span></td>
+                                </tr>
 
-                        <div class="ders-karti">
-                            <h3>Tarih</h3>
-                            <div class="inputlar">
-                                <input type="number" id="tytTarihDogru" placeholder="D">
-                                <input type="number" id="tytTarihYanlis" placeholder="Y">
-                            </div>
-                        </div>
+                                <tr>
+                                    <td>Tarih</td>
+                                    <td>5</td>
+                                    <td><input type="number" id="tytTarihDogru" min="0" placeholder="0"></td>
+                                    <td><input type="number" id="tytTarihYanlis" min="0" placeholder="0"></td>
+                                    <td><input type="number" id="tytTarihBos" min="0" placeholder="0"></td>
+                                    <td><span class="ders-net" id="tytTarihNet">0.00</span></td>
+                                </tr>
 
-                        <div class="ders-karti">
-                            <h3>Coğrafya</h3>
-                            <div class="inputlar">
-                                <input type="number" id="tytCografyaDogru" placeholder="D">
-                                <input type="number" id="tytCografyaYanlis" placeholder="Y">
-                            </div>
-                        </div>
+                                <tr>
+                                    <td>Coğrafya</td>
+                                    <td>5</td>
+                                    <td><input type="number" id="tytCografyaDogru" min="0" placeholder="0"></td>
+                                    <td><input type="number" id="tytCografyaYanlis" min="0" placeholder="0"></td>
+                                    <td><input type="number" id="tytCografyaBos" min="0" placeholder="0"></td>
+                                    <td><span class="ders-net" id="tytCografyaNet">0.00</span></td>
+                                </tr>
 
-                        <div class="ders-karti">
-                            <h3>Felsefe</h3>
-                            <div class="inputlar">
-                                <input type="number" id="tytFelsefeDogru" placeholder="D">
-                                <input type="number" id="tytFelsefeYanlis" placeholder="Y">
-                            </div>
-                        </div>
+                                <tr>
+                                    <td>Felsefe</td>
+                                    <td>5</td>
+                                    <td><input type="number" id="tytFelsefeDogru" min="0" placeholder="0"></td>
+                                    <td><input type="number" id="tytFelsefeYanlis" min="0" placeholder="0"></td>
+                                    <td><input type="number" id="tytFelsefeBos" min="0" placeholder="0"></td>
+                                    <td><span class="ders-net" id="tytFelsefeNet">0.00</span></td>
+                                </tr>
 
-                        <div class="ders-karti">
-                            <h3>Din Kültürü</h3>
-                            <div class="inputlar">
-                                <input type="number" id="tytDinDogru" placeholder="D">
-                                <input type="number" id="tytDinYanlis" placeholder="Y">
-                            </div>
-                        </div>
+                                <tr>
+                                    <td>Din Kültürü</td>
+                                    <td>5</td>
+                                    <td><input type="number" id="tytDinDogru" min="0" placeholder="0"></td>
+                                    <td><input type="number" id="tytDinYanlis" min="0" placeholder="0"></td>
+                                    <td><input type="number" id="tytDinBos" min="0" placeholder="0"></td>
+                                    <td><span class="ders-net" id="tytDinNet">0.00</span></td>
+                                </tr>
 
-                        <div class="ders-karti">
-                            <h3>Fizik</h3>
-                            <div class="inputlar">
-                                <input type="number" id="tytFizikDogru" placeholder="D">
-                                <input type="number" id="tytFizikYanlis" placeholder="Y">
-                            </div>
-                        </div>
+                                <tr>
+                                    <td>Fizik</td>
+                                    <td>7</td>
+                                    <td><input type="number" id="tytFizikDogru" min="0" placeholder="0"></td>
+                                    <td><input type="number" id="tytFizikYanlis" min="0" placeholder="0"></td>
+                                    <td><input type="number" id="tytFizikBos" min="0" placeholder="0"></td>
+                                    <td><span class="ders-net" id="tytFizikNet">0.00</span></td>
+                                </tr>
 
-                        <div class="ders-karti">
-                            <h3>Kimya</h3>
-                            <div class="inputlar">
-                                <input type="number" id="tytKimyaDogru" placeholder="D">
-                                <input type="number" id="tytKimyaYanlis" placeholder="Y">
-                            </div>
-                        </div>
+                                <tr>
+                                    <td>Kimya</td>
+                                    <td>7</td>
+                                    <td><input type="number" id="tytKimyaDogru" min="0" placeholder="0"></td>
+                                    <td><input type="number" id="tytKimyaYanlis" min="0" placeholder="0"></td>
+                                    <td><input type="number" id="tytKimyaBos" min="0" placeholder="0"></td>
+                                    <td><span class="ders-net" id="tytKimyaNet">0.00</span></td>
+                                </tr>
 
-                        <div class="ders-karti">
-                            <h3>Biyoloji</h3>
-                            <div class="inputlar">
-                                <input type="number" id="tytBiyolojiDogru" placeholder="D">
-                                <input type="number" id="tytBiyolojiYanlis" placeholder="Y">
-                            </div>
-                        </div>
+                                <tr>
+                                    <td>Biyoloji</td>
+                                    <td>6</td>
+                                    <td><input type="number" id="tytBiyolojiDogru" min="0" placeholder="0"></td>
+                                    <td><input type="number" id="tytBiyolojiYanlis" min="0" placeholder="0"></td>
+                                    <td><input type="number" id="tytBiyolojiBos" min="0" placeholder="0"></td>
+                                    <td><span class="ders-net" id="tytBiyolojiNet">0.00</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
 
                     <div class="alt-net-alani">
@@ -150,6 +174,7 @@
                     </div>
                 </div>
 
+                <!-- ================= AYT ================= -->
                 <div class="tab-icerik" id="aytTabContent">
                     <div class="ust-form-alani uc-alanli">
                         <input type="text" id="aytDenemeAdi" placeholder="Deneme Adı (Örn: 3D AYT)">
@@ -209,127 +234,176 @@
                         </div>
                     </div>
 
+                    <!-- SAYISAL -->
                     <div class="alan-dersleri" id="sayisalAlan">
-                        <div class="ders-kutulari">
-                            <div class="ders-karti">
-                                <h3>Matematik</h3>
-                                <div class="inputlar">
-                                    <input type="number" id="sayisalMatDogru" placeholder="D">
-                                    <input type="number" id="sayisalMatYanlis" placeholder="Y">
-                                </div>
-                            </div>
-
-                            <div class="ders-karti">
-                                <h3>Fizik</h3>
-                                <div class="inputlar">
-                                    <input type="number" id="sayisalFizikDogru" placeholder="D">
-                                    <input type="number" id="sayisalFizikYanlis" placeholder="Y">
-                                </div>
-                            </div>
-
-                            <div class="ders-karti">
-                                <h3>Kimya</h3>
-                                <div class="inputlar">
-                                    <input type="number" id="sayisalKimyaDogru" placeholder="D">
-                                    <input type="number" id="sayisalKimyaYanlis" placeholder="Y">
-                                </div>
-                            </div>
-
-                            <div class="ders-karti">
-                                <h3>Biyoloji</h3>
-                                <div class="inputlar">
-                                    <input type="number" id="sayisalBiyolojiDogru" placeholder="D">
-                                    <input type="number" id="sayisalBiyolojiYanlis" placeholder="Y">
-                                </div>
-                            </div>
+                        <div class="deneme-giris-tablo-wrapper">
+                            <table class="deneme-giris-tablosu">
+                                <thead>
+                                    <tr>
+                                        <th>Ders</th>
+                                        <th>Soru</th>
+                                        <th>Doğru</th>
+                                        <th>Yanlış</th>
+                                        <th>Boş</th>
+                                        <th>Net</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Matematik</td>
+                                        <td>40</td>
+                                        <td><input type="number" id="sayisalMatDogru" min="0" placeholder="0"></td>
+                                        <td><input type="number" id="sayisalMatYanlis" min="0" placeholder="0"></td>
+                                        <td><input type="number" id="sayisalMatBos" min="0" placeholder="0"></td>
+                                        <td><span class="ders-net" id="sayisalMatNet">0.00</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Fizik</td>
+                                        <td>14</td>
+                                        <td><input type="number" id="sayisalFizikDogru" min="0" placeholder="0"></td>
+                                        <td><input type="number" id="sayisalFizikYanlis" min="0" placeholder="0"></td>
+                                        <td><input type="number" id="sayisalFizikBos" min="0" placeholder="0"></td>
+                                        <td><span class="ders-net" id="sayisalFizikNet">0.00</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Kimya</td>
+                                        <td>13</td>
+                                        <td><input type="number" id="sayisalKimyaDogru" min="0" placeholder="0"></td>
+                                        <td><input type="number" id="sayisalKimyaYanlis" min="0" placeholder="0"></td>
+                                        <td><input type="number" id="sayisalKimyaBos" min="0" placeholder="0"></td>
+                                        <td><span class="ders-net" id="sayisalKimyaNet">0.00</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Biyoloji</td>
+                                        <td>13</td>
+                                        <td><input type="number" id="sayisalBiyolojiDogru" min="0" placeholder="0"></td>
+                                        <td><input type="number" id="sayisalBiyolojiYanlis" min="0" placeholder="0">
+                                        </td>
+                                        <td><input type="number" id="sayisalBiyolojiBos" min="0" placeholder="0"></td>
+                                        <td><span class="ders-net" id="sayisalBiyolojiNet">0.00</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
 
+                    <!-- EŞİT AĞIRLIK -->
                     <div class="alan-dersleri" id="esitAgirlikAlan">
-                        <div class="ders-kutulari">
-                            <div class="ders-karti">
-                                <h3>Matematik</h3>
-                                <div class="inputlar">
-                                    <input type="number" id="eaMatDogru" placeholder="D">
-                                    <input type="number" id="eaMatYanlis" placeholder="Y">
-                                </div>
-                            </div>
-
-                            <div class="ders-karti">
-                                <h3>Edebiyat</h3>
-                                <div class="inputlar">
-                                    <input type="number" id="eaEdebiyatDogru" placeholder="D">
-                                    <input type="number" id="eaEdebiyatYanlis" placeholder="Y">
-                                </div>
-                            </div>
-
-                            <div class="ders-karti">
-                                <h3>Tarih-1</h3>
-                                <div class="inputlar">
-                                    <input type="number" id="eaTarih1Dogru" placeholder="D">
-                                    <input type="number" id="eaTarih1Yanlis" placeholder="Y">
-                                </div>
-                            </div>
-
-                            <div class="ders-karti">
-                                <h3>Coğrafya-1</h3>
-                                <div class="inputlar">
-                                    <input type="number" id="eaCografya1Dogru" placeholder="D">
-                                    <input type="number" id="eaCografya1Yanlis" placeholder="Y">
-                                </div>
-                            </div>
+                        <div class="deneme-giris-tablo-wrapper">
+                            <table class="deneme-giris-tablosu">
+                                <thead>
+                                    <tr>
+                                        <th>Ders</th>
+                                        <th>Soru</th>
+                                        <th>Doğru</th>
+                                        <th>Yanlış</th>
+                                        <th>Boş</th>
+                                        <th>Net</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Matematik</td>
+                                        <td>40</td>
+                                        <td><input type="number" id="eaMatDogru" min="0" placeholder="0"></td>
+                                        <td><input type="number" id="eaMatYanlis" min="0" placeholder="0"></td>
+                                        <td><input type="number" id="eaMatBos" min="0" placeholder="0"></td>
+                                        <td><span class="ders-net" id="eaMatNet">0.00</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Edebiyat</td>
+                                        <td>24</td>
+                                        <td><input type="number" id="eaEdebiyatDogru" min="0" placeholder="0"></td>
+                                        <td><input type="number" id="eaEdebiyatYanlis" min="0" placeholder="0"></td>
+                                        <td><input type="number" id="eaEdebiyatBos" min="0" placeholder="0"></td>
+                                        <td><span class="ders-net" id="eaEdebiyatNet">0.00</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Tarih-1</td>
+                                        <td>10</td>
+                                        <td><input type="number" id="eaTarih1Dogru" min="0" placeholder="0"></td>
+                                        <td><input type="number" id="eaTarih1Yanlis" min="0" placeholder="0"></td>
+                                        <td><input type="number" id="eaTarih1Bos" min="0" placeholder="0"></td>
+                                        <td><span class="ders-net" id="eaTarih1Net">0.00</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Coğrafya-1</td>
+                                        <td>6</td>
+                                        <td><input type="number" id="eaCografya1Dogru" min="0" placeholder="0"></td>
+                                        <td><input type="number" id="eaCografya1Yanlis" min="0" placeholder="0"></td>
+                                        <td><input type="number" id="eaCografya1Bos" min="0" placeholder="0"></td>
+                                        <td><span class="ders-net" id="eaCografya1Net">0.00</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
 
+                    <!-- SÖZEL -->
                     <div class="alan-dersleri" id="sozelAlan">
-                        <div class="ders-kutulari">
-                            <div class="ders-karti">
-                                <h3>Edebiyat</h3>
-                                <div class="inputlar">
-                                    <input type="number" id="sozelEdebiyatDogru" placeholder="D">
-                                    <input type="number" id="sozelEdebiyatYanlis" placeholder="Y">
-                                </div>
-                            </div>
-
-                            <div class="ders-karti">
-                                <h3>Tarih-1</h3>
-                                <div class="inputlar">
-                                    <input type="number" id="sozelTarih1Dogru" placeholder="D">
-                                    <input type="number" id="sozelTarih1Yanlis" placeholder="Y">
-                                </div>
-                            </div>
-
-                            <div class="ders-karti">
-                                <h3>Coğrafya-1</h3>
-                                <div class="inputlar">
-                                    <input type="number" id="sozelCografya1Dogru" placeholder="D">
-                                    <input type="number" id="sozelCografya1Yanlis" placeholder="Y">
-                                </div>
-                            </div>
-
-                            <div class="ders-karti">
-                                <h3>Tarih-2</h3>
-                                <div class="inputlar">
-                                    <input type="number" id="sozelTarih2Dogru" placeholder="D">
-                                    <input type="number" id="sozelTarih2Yanlis" placeholder="Y">
-                                </div>
-                            </div>
-
-                            <div class="ders-karti">
-                                <h3>Coğrafya-2</h3>
-                                <div class="inputlar">
-                                    <input type="number" id="sozelCografya2Dogru" placeholder="D">
-                                    <input type="number" id="sozelCografya2Yanlis" placeholder="Y">
-                                </div>
-                            </div>
-
-                            <div class="ders-karti">
-                                <h3>Felsefe Grubu</h3>
-                                <div class="inputlar">
-                                    <input type="number" id="sozelFelsefeDogru" placeholder="D">
-                                    <input type="number" id="sozelFelsefeYanlis" placeholder="Y">
-                                </div>
-                            </div>
+                        <div class="deneme-giris-tablo-wrapper">
+                            <table class="deneme-giris-tablosu">
+                                <thead>
+                                    <tr>
+                                        <th>Ders</th>
+                                        <th>Soru</th>
+                                        <th>Doğru</th>
+                                        <th>Yanlış</th>
+                                        <th>Boş</th>
+                                        <th>Net</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Edebiyat</td>
+                                        <td>24</td>
+                                        <td><input type="number" id="sozelEdebiyatDogru" min="0" placeholder="0"></td>
+                                        <td><input type="number" id="sozelEdebiyatYanlis" min="0" placeholder="0"></td>
+                                        <td><input type="number" id="sozelEdebiyatBos" min="0" placeholder="0"></td>
+                                        <td><span class="ders-net" id="sozelEdebiyatNet">0.00</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Tarih-1</td>
+                                        <td>10</td>
+                                        <td><input type="number" id="sozelTarih1Dogru" min="0" placeholder="0"></td>
+                                        <td><input type="number" id="sozelTarih1Yanlis" min="0" placeholder="0"></td>
+                                        <td><input type="number" id="sozelTarih1Bos" min="0" placeholder="0"></td>
+                                        <td><span class="ders-net" id="sozelTarih1Net">0.00</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Coğrafya-1</td>
+                                        <td>6</td>
+                                        <td><input type="number" id="sozelCografya1Dogru" min="0" placeholder="0"></td>
+                                        <td><input type="number" id="sozelCografya1Yanlis" min="0" placeholder="0"></td>
+                                        <td><input type="number" id="sozelCografya1Bos" min="0" placeholder="0"></td>
+                                        <td><span class="ders-net" id="sozelCografya1Net">0.00</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Tarih-2</td>
+                                        <td>11</td>
+                                        <td><input type="number" id="sozelTarih2Dogru" min="0" placeholder="0"></td>
+                                        <td><input type="number" id="sozelTarih2Yanlis" min="0" placeholder="0"></td>
+                                        <td><input type="number" id="sozelTarih2Bos" min="0" placeholder="0"></td>
+                                        <td><span class="ders-net" id="sozelTarih2Net">0.00</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Coğrafya-2</td>
+                                        <td>11</td>
+                                        <td><input type="number" id="sozelCografya2Dogru" min="0" placeholder="0"></td>
+                                        <td><input type="number" id="sozelCografya2Yanlis" min="0" placeholder="0"></td>
+                                        <td><input type="number" id="sozelCografya2Bos" min="0" placeholder="0"></td>
+                                        <td><span class="ders-net" id="sozelCografya2Net">0.00</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Felsefe Grubu</td>
+                                        <td>12</td>
+                                        <td><input type="number" id="sozelFelsefeDogru" min="0" placeholder="0"></td>
+                                        <td><input type="number" id="sozelFelsefeYanlis" min="0" placeholder="0"></td>
+                                        <td><input type="number" id="sozelFelsefeBos" min="0" placeholder="0"></td>
+                                        <td><span class="ders-net" id="sozelFelsefeNet">0.00</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
 
@@ -343,21 +417,22 @@
                 </div>
             </div>
 
+            <!-- GRAFİK -->
             <div class="analiz-kart grafik-karti">
                 <div class="grafik-ust">
-                    <span class="legend-item tyt-cizgi">TYT</span>
-                    <span class="legend-item ayt-cizgi">AYT</span>
+                    <div class="legend-item tyt-cizgi">TYT</div>
+                    <div class="legend-item ayt-cizgi">AYT</div>
                 </div>
-
                 <div class="grafik-canvas-alani">
-                    <canvas id="netGrafik"></canvas>
+                    <canvas id="denemeGrafik"></canvas>
                 </div>
             </div>
         </div>
 
+        <!-- GEÇMİŞ -->
         <div class="analiz-kart gecmis-karti">
             <div class="gecmis-baslik">
-                <h2>📜 Deneme Geçmişi</h2>
+                <h2>Deneme Geçmişi</h2>
             </div>
 
             <div class="tablo-wrapper">
@@ -367,7 +442,7 @@
                             <th>Tarih</th>
                             <th>Deneme Adı</th>
                             <th>Tür</th>
-                            <th>Net</th>
+                            <th>Toplam Net</th>
                             <th>İşlem</th>
                         </tr>
                     </thead>
@@ -375,34 +450,36 @@
                 </table>
             </div>
         </div>
+    </div>
 
-        <div class="modal-overlay hidden" id="denemeDetayModal">
-            <div class="modal-card deneme-detay-card">
-                <button type="button" class="modal-close-btn" id="denemeDetayKapatBtn">×</button>
+    <!-- DETAY MODAL -->
+    <!-- DETAY MODAL -->
+    <div class="modal-overlay hidden" id="denemeDetayModal">
+        <div class="modal-card deneme-detay-card">
+            <button type="button" class="modal-close-btn" id="denemeDetayKapatBtn">×</button>
 
-                <div class="deneme-detay-header">
-                    <h2 id="denemeDetayBaslik">Deneme Detayı</h2>
-                    <p id="denemeDetayMeta"></p>
-                </div>
+            <div class="deneme-detay-header">
+                <h2 id="denemeDetayBaslik">Deneme Detayı</h2>
+                <p id="denemeDetayMeta"></p>
+            </div>
 
-                <div class="detay-ozet-grid" id="denemeDetayOzet"></div>
+            <div class="detay-ozet-grid" id="denemeDetayOzet"></div>
 
-                <div class="detay-tablo-wrapper">
-                    <table class="detay-table">
-                        <thead>
-                            <tr>
-                                <th>Ders</th>
-                                <th>Doğru</th>
-                                <th>Yanlış</th>
-                                <th>Net</th>
-                            </tr>
-                        </thead>
-                        <tbody id="denemeDetayBody"></tbody>
-                    </table>
-                </div>
+            <div class="detay-tablo-wrapper">
+                <table class="detay-table">
+                    <thead>
+                        <tr>
+                            <th>Ders</th>
+                            <th>Doğru</th>
+                            <th>Yanlış</th>
+                            <th>Boş</th>
+                            <th>Net</th>
+                        </tr>
+                    </thead>
+                    <tbody id="denemeDetayBody"></tbody>
+                </table>
             </div>
         </div>
-
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>

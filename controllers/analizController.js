@@ -75,6 +75,7 @@ exports.denemeDetayiGetir = async (req, res) => {
                     d.ders_adi,
                     ds.dogru_sayisi,
                     ds.yanlis_sayisi,
+                    ISNULL(ds.bos_sayisi, 0) AS bos_sayisi,
                     CAST(ds.net_sayisi AS DECIMAL(5,2)) AS net_sayisi
                 FROM Deneme_Sonuclari ds
                 INNER JOIN Dersler d
@@ -141,13 +142,14 @@ exports.denemeKaydet = async (req, res) => {
             typeof sonuc.ders_id !== 'number' ||
             typeof sonuc.dogru_sayisi !== 'number' ||
             typeof sonuc.yanlis_sayisi !== 'number' ||
+            typeof sonuc.bos_sayisi !== 'number' ||
             typeof sonuc.net_sayisi !== 'number'
         ) {
             return res.status(400).json({ error: 'Ders sonuç formatı geçersiz.' });
         }
 
-        if (sonuc.dogru_sayisi < 0 || sonuc.yanlis_sayisi < 0) {
-            return res.status(400).json({ error: 'Doğru ve yanlış sayıları negatif olamaz.' });
+        if (sonuc.dogru_sayisi < 0 || sonuc.yanlis_sayisi < 0 || sonuc.bos_sayisi < 0) {
+            return res.status(400).json({ error: 'Doğru, yanlış ve boş sayıları negatif olamaz.' });
         }
     }
 
@@ -181,12 +183,13 @@ exports.denemeKaydet = async (req, res) => {
                 .input('ders_id', sql.Int, sonuc.ders_id)
                 .input('dogru_sayisi', sql.Int, sonuc.dogru_sayisi)
                 .input('yanlis_sayisi', sql.Int, sonuc.yanlis_sayisi)
+                .input('bos_sayisi', sql.Int, sonuc.bos_sayisi)
                 .input('net_sayisi', sql.Decimal(5, 2), sonuc.net_sayisi)
                 .query(`
                     INSERT INTO Deneme_Sonuclari
-                    (deneme_id, ders_id, dogru_sayisi, yanlis_sayisi, net_sayisi)
+                    (deneme_id, ders_id, dogru_sayisi, yanlis_sayisi, bos_sayisi, net_sayisi)
                     VALUES
-                    (@deneme_id, @ders_id, @dogru_sayisi, @yanlis_sayisi, @net_sayisi)
+                    (@deneme_id, @ders_id, @dogru_sayisi, @yanlis_sayisi, @bos_sayisi, @net_sayisi)
                 `);
         }
 

@@ -11,6 +11,8 @@ const konuRoutes = require('./routes/konuRoutes');
 const gorevRoutes = require('./routes/gorevRoutes');
 const analizRoutes = require('./routes/analizRoutes');
 const takvimRoutes = require('./routes/takvimRoutes');
+const hedefRoutes = require('./routes/hedefRoutes');
+const hedefProgramlarRoutes = require('./routes/hedefProgramlarRoutes')
 const app = express(); // 
 
 // 2. ogrenci dogrulama ayarları
@@ -23,6 +25,8 @@ app.use('/api/konu', konuRoutes);
 app.use('/api/gorev', gorevRoutes);
 app.use('/api/takvim', takvimRoutes);
 app.use('/api/analiz', analizRoutes);
+app.use('/api/hedef', hedefRoutes);
+app.use('/api/hedef-programlar', hedefProgramlarRoutes);
 
 const PORT = 3000;
 app.listen(PORT, () => {

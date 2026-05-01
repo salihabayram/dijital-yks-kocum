@@ -23,6 +23,10 @@ const CONFIG = {
 
 let aktifTarih = new Date();
 let grafikReferansTarih = new Date();
+let tumBolumler = [];
+
+let secilenUniversite = null;
+let secilenHedefProgramId = null;
 
 const headers = {
     "Authorization": `Bearer ${CONFIG.TOKEN}`,
@@ -79,6 +83,18 @@ document.addEventListener("DOMContentLoaded", () => {
     fetchDashboardData();
     fetchWeeklyStudy(grafikReferansTarih);
     fetchDenemeNetleri();
+
+    // hedef için 
+
+    fetchHedef();
+    fetchSehirler();
+
+    document.getElementById("citySelect")?.addEventListener("change", function () {
+        fetchUniversiteler(this.value);
+    });
+
+    document.getElementById("saveTargetBtn")?.addEventListener("click", saveHedef);
+
 });
 
 async function addNewTask() {
@@ -202,7 +218,7 @@ async function fetchDashboardData() {
 
         const workHourWeekEl = document.getElementById("work-hour-week");
         if (workHourWeekEl) {
-            workHourWeekEl.innerText = data.buHaftaSaat || 0;
+            workHourWeekEl.innerText = data.bugunSaat || 0;
         }
 
         const workHourAvgEl = document.getElementById("work-hour-avg");
@@ -210,12 +226,7 @@ async function fetchDashboardData() {
             workHourAvgEl.innerText = data.gunlukOrtalama || 0;
         }
 
-        const comparisonValueEl = document.getElementById("comparison-value");
         const comparisonTrendEl = document.getElementById("comparison-trend");
-
-        if (comparisonValueEl) {
-            comparisonValueEl.innerText = `${data.buHaftaSaat || 0} Saat`;
-        }
 
         if (comparisonTrendEl) {
             const fark = data.haftalikFark || 0;
@@ -369,6 +380,19 @@ async function fetchWeeklyStudy(targetDate = new Date()) {
                     legend: {
                         position: "top",
                         align: "end"
+                    },
+                    tooltip: {
+                        callbacks: {
+                            title: function (items) {
+                                const index = items[0].dataIndex;
+                                const gun = items[0].label;
+                                const tarih = data.dates?.[index] || "";
+                                return `${gun} - ${tarih}`;
+                            },
+                            label: function (context) {
+                                return `${context.dataset.label}: ${Number(context.raw).toFixed(1)} saat`;
+                            }
+                        }
                     }
                 }
             }
@@ -608,3 +632,314 @@ function showConfirmToast(message, onConfirm) {
         toast.remove();
     };
 }
+
+
+// hedef belirlenemedi kısmı için 
+
+async function fetchHedef() {
+    try {
+        const response = await fetch(`${CONFIG.API_BASE}/hedef/getir`, { headers });
+
+        if (!response.ok) {
+            throw new Error("Hedef bilgisi alınamadı.");
+        }
+
+        const data = await response.json();
+        const targetEl = document.getElementById("target-uni-val");
+
+        if (!targetEl) return;
+
+        if (data && data.universite_adi && data.bolum_adi) {
+            targetEl.innerHTML = `
+    ${data.universite_adi}<br>
+    ${data.bolum_adi}
+`;
+
+            // Sayfa yüklenince hedef asistanı da otomatik dolsun
+            renderTargetBot(data);
+        } else {
+            targetEl.innerText = "Hedef Belirlenmedi";
+
+            const bot = document.getElementById("targetBotInfo");
+            if (bot) {
+                bot.className = "bot-info-empty";
+                bot.innerHTML = `
+                    <i class="fas fa-lightbulb"></i>
+                    <p>Henüz hedef seçmedin. Bir hedef seçtiğinde burada puan, sıralama ve üniversite bilgileri görünecek.</p>
+                `;
+            }
+        }
+    } catch (err) {
+        console.error("Hedef getirme hatası:", err);
+    }
+}
+
+async function fetchSehirler() {
+    try {
+        const response = await fetch(`${CONFIG.API_BASE}/hedef/sehirler`, { headers });
+
+        if (!response.ok) {
+            throw new Error("Şehirler alınamadı.");
+        }
+
+        const data = await response.json();
+        const citySelect = document.getElementById("citySelect");
+
+        if (!citySelect) return;
+
+        citySelect.innerHTML = `<option value="">Şehir seçiniz</option>`;
+
+        data.forEach((item) => {
+            citySelect.innerHTML += `
+                <option value="${item.sehir}">${item.sehir}</option>
+            `;
+        });
+    } catch (err) {
+        console.error("Şehirler hatası:", err);
+    }
+}
+
+async function fetchUniversiteler(sehir) {
+    const universityList = document.getElementById("universityList");
+    const departmentList = document.getElementById("departmentList");
+
+    secilenUniversite = null;
+    secilenHedefProgramId = null;
+
+    if (departmentList) {
+        departmentList.innerHTML = `<p class="empty-target-text">Önce üniversite seçiniz.</p>`;
+    }
+
+    if (!sehir) {
+        if (universityList) {
+            universityList.innerHTML = `<p class="empty-target-text">Önce şehir seçiniz.</p>`;
+        }
+        return;
+    }
+
+    try {
+        const response = await fetch(`${CONFIG.API_BASE}/hedef/universiteler?sehir=${encodeURIComponent(sehir)}`, { headers });
+
+        if (!response.ok) {
+            throw new Error("Üniversiteler alınamadı.");
+        }
+
+        const data = await response.json();
+
+        if (!universityList) return;
+
+        universityList.innerHTML = "";
+
+        if (data.length === 0) {
+            universityList.innerHTML = `<p class="empty-target-text">Bu şehirde üniversite bulunamadı.</p>`;
+            return;
+        }
+
+        data.forEach((uni) => {
+            const card = document.createElement("div");
+            card.className = "uni-radio-card";
+            card.innerHTML = `
+                <div class="radio-dot"></div>
+                <div>
+                    <h5>${uni.universite_adi}</h5>
+                    <span>${uni.universite_tipi || "Üniversite"}</span>
+                </div>
+            `;
+
+            card.onclick = () => {
+                document.querySelectorAll(".uni-radio-card").forEach(c => c.classList.remove("active"));
+                card.classList.add("active");
+
+                secilenUniversite = uni.universite_adi;
+                secilenHedefProgramId = null;
+
+                fetchBolumler(uni.universite_adi);
+            };
+
+            universityList.appendChild(card);
+        });
+    } catch (err) {
+        console.error("Üniversite hatası:", err);
+        showToast("Üniversiteler alınamadı.", "error");
+    }
+}
+
+async function fetchBolumler(universite) {
+    const departmentList = document.getElementById("departmentList");
+
+    const searchInput = document.getElementById("departmentSearch");
+
+    if (!departmentList) return;
+
+    departmentList.innerHTML = `<p class="empty-target-text">Bölümler yükleniyor...</p>`;
+
+    if (searchInput) searchInput.value = "";
+
+    try {
+        const response = await fetch(`${CONFIG.API_BASE}/hedef/bolumler?universite=${encodeURIComponent(universite)}`, { headers });
+
+        if (!response.ok) {
+            throw new Error("Bölümler alınamadı.");
+        }
+
+        const data = await response.json();
+        tumBolumler = data || [];
+
+        renderBolumler(tumBolumler);
+
+
+
+        if (searchInput) {
+            searchInput.oninput = function () {
+                const aranan = this.value.toLowerCase();
+
+                const filtreli = tumBolumler.filter(b =>
+                    b.bolum_adi.toLowerCase().includes(aranan) ||
+                    String(b.yil).includes(aranan) ||
+                    String(b.puan_turu).toLowerCase().includes(aranan)
+                );
+
+                renderBolumler(filtreli, secilenHedefProgramId);
+            };
+        }
+
+    } catch (err) {
+        console.error("Bölüm hatası:", err);
+        showToast("Bölümler alınamadı.", "error");
+    }
+}
+
+async function saveHedef() {
+    if (!secilenHedefProgramId) {
+        showToast("Lütfen bir bölüm seçin.", "error");
+        return;
+    }
+
+    try {
+        const response = await fetch(`${CONFIG.API_BASE}/hedef/kaydet`, {
+            method: "POST",
+            headers,
+            body: JSON.stringify({
+                hedef_program_id: secilenHedefProgramId
+            })
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            showToast(data.error || "Hedef kaydedilemedi.", "error");
+            return;
+        }
+
+        showToast("Hedef başarıyla kaydedildi.", "success");
+        await fetchHedef();
+    } catch (err) {
+        console.error("Hedef kaydetme hatası:", err);
+        showToast("Sunucuya bağlanılamadı.", "error");
+    }
+}
+
+function renderBolumler(data, aktifId = null) {
+    const departmentList = document.getElementById("departmentList");
+
+    if (!departmentList) return;
+
+    departmentList.innerHTML = "";
+
+    if (!data || data.length === 0) {
+        departmentList.innerHTML = `<p class="empty-target-text">Bölüm bulunamadı.</p>`;
+        return;
+    }
+
+    data.forEach((bolum) => {
+        const card = document.createElement("div");
+        card.className = `department-radio-card ${aktifId === bolum.hedef_program_id ? "active" : ""}`;
+
+        card.innerHTML = `
+            <div class="department-top">
+                <div>
+                    <h5>${bolum.bolum_adi}</h5>
+                    <p>${bolum.fakulte_adi || "Fakülte bilgisi yok"}</p>
+                </div>
+                <span class="score-type">${bolum.puan_turu || "-"}</span>
+            </div>
+
+            <div class="department-info-grid">
+                <div>
+                    <span>Taban Puan</span>
+                    <strong>${bolum.taban_puan || "-"}</strong>
+                </div>
+                <div>
+                    <span>Sıralama</span>
+                    <strong>${bolum.basari_sirasi || "-"}</strong>
+                </div>
+                <div>
+                    <span>Yıl</span>
+                    <strong>${bolum.yil || "-"}</strong>
+                </div>
+            </div>
+        `;
+
+        card.onclick = () => {
+            secilenHedefProgramId = bolum.hedef_program_id;
+
+            document.querySelectorAll(".department-radio-card").forEach(c => c.classList.remove("active"));
+            card.classList.add("active");
+
+
+
+            renderTargetBot(bolum);
+        };
+
+        departmentList.appendChild(card);
+    });
+}
+
+function renderTargetBot(bolum) {
+    const bot = document.getElementById("targetBotInfo");
+
+    if (!bot) return;
+
+    const universiteTipi = bolum.universite_tipi === "devlet" ? "Devlet Üniversitesi" : "Vakıf Üniversitesi";
+
+    bot.className = "bot-info-filled";
+
+    bot.innerHTML = `
+        <div class="bot-message">
+            <strong>${bolum.universite_adi}</strong>
+            <span>${bolum.bolum_adi}</span>
+        </div>
+
+        <div class="bot-stats">
+            <div>
+                <i class="fas fa-building-columns"></i>
+                <p>Üniversite Tipi</p>
+                <strong>${universiteTipi}</strong>
+            </div>
+
+            <div>
+                <i class="fas fa-star"></i>
+                <p>Taban Puan</p>
+                <strong>${bolum.taban_puan || "-"}</strong>
+            </div>
+
+            <div>
+                <i class="fas fa-ranking-star"></i>
+                <p>Başarı Sırası</p>
+                <strong>${bolum.basari_sirasi || "-"}</strong>
+            </div>
+
+            <div>
+                <i class="fas fa-calendar"></i>
+                <p>Yıl</p>
+                <strong>${bolum.yil || "-"}</strong>
+            </div>
+        </div>
+
+        <div class="bot-motivation">
+            <i class="fas fa-heart"></i>
+            <span>Bu hedef için bugün atacağın küçük bir adım, seni bu bölüme biraz daha yaklaştırır.</span>
+        </div>
+    `;
+}
+
